@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String url = 'http://localhost:8111/powerguiyangpad';
+  String url = 'http://localhost:8111';
   int _counter = 99;
 
   @override
