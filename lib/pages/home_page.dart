@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:jaguar/jaguar.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:webview_integration_template/pages/web_view_page.dart';
-import 'package:webview_integration_template/utils/unzip_asset_file.dart';
+import 'web_view_page.dart';
+import '../utils/unzip_asset_file.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
