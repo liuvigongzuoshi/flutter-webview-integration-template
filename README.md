@@ -19,7 +19,7 @@ https://flutter.cn/docs/get-started/install
 
 1. 选择 Flutter Stable 版本
 
-https://flutter.cn/docs/development/tools/sdk/releases?tab=windows
+https://flutter.cn/docs/development/tools/sdk/releases
 
 2. 配置 flutter 到系统环境变量里面
 
