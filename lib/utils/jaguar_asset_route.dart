@@ -14,11 +14,8 @@ Route serveFlutterAsset({
     Iterable<String> segs = ctx.pathSegments;
     if (skipCount > 0) segs = segs.skip(skipCount);
 
-    String lookupPath =
-        segs.join('/') + (ctx.path.endsWith('/') ? 'index.html' : '');
-    final body = (await rootBundle.load('assets/$prefix$lookupPath'))
-        .buffer
-        .asUint8List();
+    String lookupPath = segs.join('/') + (ctx.path.endsWith('/') ? 'index.html' : '');
+    final body = (await rootBundle.load('assets/$prefix$lookupPath')).buffer.asUint8List();
 
     String mimeType;
     if (!ctx.path.endsWith('/')) {
