@@ -89,6 +89,11 @@ flutter doctor -v
 
 安装到链接 Android 设备 `flutter install apk`，iOS 同理
 
+## APP 适配最低型号
+
+- iOS 10.3
+- Android SDK 23 (Marshmallow 6.0)
+
 ## 更多
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)

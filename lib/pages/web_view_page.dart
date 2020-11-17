@@ -3,12 +3,25 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewPage extends StatelessWidget {
+class WebViewPage extends StatefulWidget {
   WebViewPage({Key key, @required this.url, this.title}) : super(key: key);
 
   final String title;
   final String url;
+
+  @override
+  _WebViewPageState createState() => _WebViewPageState();
+}
+
+class _WebViewPageState extends State<WebViewPage> {
   final Completer<WebViewController> _webViewController = Completer<WebViewController>();
+
+  @override
+  void initState() {
+    super.initState();
+    // Enable hybrid composition.
+    // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
 
   _reloadWeb() {
     _webViewController.future.then((webViewController) => webViewController.reload());
@@ -20,7 +33,7 @@ class WebViewPage extends StatelessWidget {
 
   JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
     return JavascriptChannel(
-        name: 'Toaster',
+        name: 'Flutter_Toaster',
         onMessageReceived: (JavascriptMessage message) {
           Scaffold.of(context).showSnackBar(
             SnackBar(content: Text(message.message)),
@@ -43,7 +56,7 @@ class WebViewPage extends StatelessWidget {
       appBar: AppBar(toolbarHeight: 0, elevation: 0),
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl: url,
+          initialUrl: widget.url,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController controller) => _onWebViewCreated(controller, context),
           javascriptChannels: <JavascriptChannel>[
@@ -68,5 +81,10 @@ class WebViewPage extends StatelessWidget {
         child: Icon(Icons.refresh),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'pages/home_page.dart';
+import 'package:webview_integration_template/pages/home_page.dart';
+// import 'package:webview_integration_template/utils/web_asset_bundle.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // final unZipPath = await unZipWebBundle();
+  // await startStaticService(unZipPath);
+
   runApp(MyApp());
 }
 

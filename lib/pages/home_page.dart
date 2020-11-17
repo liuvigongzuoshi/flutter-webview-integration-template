@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jaguar/jaguar.dart';
-import 'package:path_provider/path_provider.dart';
-
-import 'web_view_page.dart';
-import 'package:webview_integration_template/utils/unzip_asset_file.dart';
+import 'package:webview_integration_template/pages/web_view_page.dart';
+// import 'package:webview_integration_template/pages/web_view_plus_page.dart';
+import 'package:webview_integration_template/utils/web_asset_bundle.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -25,26 +23,12 @@ class _HomePageState extends State<HomePage> {
   }
 
   unZipFile() async {
-    final documents = await getApplicationDocumentsDirectory();
-    const zipRootPath = "assets/www.zip";
-    // 设定要解压的目标文件夹
-    final unZipPath = '${documents.path}/www';
-    await unZipAssetFile(zipRootPath, unZipPath);
-    await startAssetsService(unZipPath);
+    final unZipPath = await unZipWebBundle();
+    await startStaticService(unZipPath);
     Navigator.of(context).pushReplacement(new MaterialPageRoute(
-      builder: (context) {
-        return WebViewPage(url: url);
-      },
+      builder: (context) => WebViewPage(url: url),
       maintainState: false,
     ));
-  }
-
-  startAssetsService(String directory) async {
-    // 启动静态服务器 Jaguar
-    final server = Jaguar(address: "0.0.0.0", port: 8111);
-    server.staticFiles("*", directory);
-    await server.serve(logRequests: true);
-    server.log.onRecord.listen((r) => print(r));
   }
 
   @override
