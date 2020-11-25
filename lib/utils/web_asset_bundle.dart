@@ -56,12 +56,14 @@ Future<String> unZipWebBundle() async {
   return bundleFile.unZipPath;
 }
 
-startStaticService(String directory) async {
+Future<String> startStaticService(String directory, {String address = "127.0.0.1", int port = 8111}) async {
   // 启动静态服务器 Jaguar
-  final server = Jaguar(address: "0.0.0.0", port: 8111);
+  final server = Jaguar(address: address, port: port);
   server.staticFiles("*", directory);
   await server.serve(logRequests: true);
   server.log.onRecord.listen((r) => print(r));
+  String url = "http://$address:$port";
+  return url;
 }
 
 Future<String> getAssetFileSha1(String zipAssetPath) async {

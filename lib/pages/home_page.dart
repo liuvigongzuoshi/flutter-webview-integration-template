@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String url = 'http://localhost:8111';
   int _counter = 99;
 
   @override
@@ -24,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   unZipFile() async {
     final unZipPath = await unZipWebBundle();
-    await startStaticService(unZipPath);
+    String url = await startStaticService(unZipPath);
     Navigator.of(context).pushReplacement(new MaterialPageRoute(
       builder: (context) => WebViewPage(url: url),
       maintainState: false,

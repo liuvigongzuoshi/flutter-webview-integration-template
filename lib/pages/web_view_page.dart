@@ -70,7 +70,7 @@ class _WebViewPageState extends State<WebViewPage> {
             initEvaluateJavascript(context);
           },
           gestureNavigationEnabled: true,
-          debuggingEnabled: true,
+          debuggingEnabled: false,
         );
       }),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniEndTop,

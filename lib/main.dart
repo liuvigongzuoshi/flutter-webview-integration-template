@@ -6,7 +6,7 @@ import 'package:webview_integration_template/pages/home_page.dart';
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // final unZipPath = await unZipWebBundle();
-  // await startStaticService(unZipPath);
+  // String url = await startStaticService(unZipPath);
 
   runApp(MyApp());
 }
